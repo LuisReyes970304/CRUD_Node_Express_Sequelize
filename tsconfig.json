@@ -14,7 +14,7 @@
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
-
+    "jsx": "react-jsx",
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
@@ -34,11 +34,12 @@
 
     // Recommended Options
     "strict": true,
-    "jsx": "react-jsx",
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+    "allowImportingTsExtensions": false
+  }, 
+  "include": ["src/**/*.ts", "index.ts"]
 }

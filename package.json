@@ -4,7 +4,7 @@
   "description": "This is just a test for npm",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx --watch src/index.ts",
+    "dev": "tsx --watch index.ts",
     "prod": ""
   },
   "keywords": [],
@@ -18,7 +18,8 @@
     "axios": "^1.19.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
-    "multer": "^2.2.0"
+    "multer": "^2.2.0",
+    "sequelize": "^6.37.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
