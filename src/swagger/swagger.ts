@@ -1,5 +1,3 @@
-import swaggerUi from "swagger-ui-express";
-import swaggerJsdoc from "swagger-jsdoc";
 
 /**
  * OpenAPI specification for the hybrid cryptography demo API.

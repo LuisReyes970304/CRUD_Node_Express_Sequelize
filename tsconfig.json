@@ -33,13 +33,14 @@
     // "noPropertyAccessFromIndexSignature": true,
 
     // Recommended Options
+    "noEmit": true,
     "strict": true,
     "verbatimModuleSyntax": true,
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "allowImportingTsExtensions": false
+    "allowImportingTsExtensions": true
   }, 
   "include": ["src/**/*.ts", "index.ts"]
 }
