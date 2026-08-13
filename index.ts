@@ -6,6 +6,7 @@ import { options } from "./src/swagger/swagger.js";
 import getRouter from "./src/service/get.routes.ts";
 import createRouter from "./src/service/create_users.routes.ts";
 import deleteRouter from "./src/service/delete_user.routes.ts";
+import updateRouter from "./src/service/update_user.routes.ts";
 
 const openapiSpecification = swaggerJsdoc(options);
 
@@ -23,11 +24,7 @@ app.post("/create_user", createRouter);
 
 app.delete("/delete", deleteRouter);
 
-// app.patch("/update", (_req: Request, res: Response) => {
-//   const num: number = Math.max(...database) + 1;
-//   database[0] = num;
-//   res.status(200).send("first number modified, new value: " + num);
-// });
+app.patch("/update", updateRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on ${host}:${port}`);

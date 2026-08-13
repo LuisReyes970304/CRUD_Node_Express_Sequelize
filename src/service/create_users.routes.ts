@@ -33,7 +33,7 @@ router.post("/create_user", (req: Request, res: Response) => {
   for (const char of database) {
     newArr.push(char.id);
   }
-  const nextId = Math.max(...newArr) + 1;
+  const nextId: number = newArr.length === 0 ? 1 : Math.max(...newArr) + 1;
   const { name } = req.body;
   const user: User = { id: nextId, name: name };
   database.push(user);
