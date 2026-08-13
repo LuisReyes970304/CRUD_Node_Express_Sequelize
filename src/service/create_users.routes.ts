@@ -29,15 +29,11 @@ const router = Router();
  *         description: New user created.
  */
 router.post("/create_user", (req: Request, res: Response) => {
-  const newArr = [];
-  for (const char of database) {
-    newArr.push(char.id);
-  }
-  const nextId: number = newArr.length === 0 ? 1 : Math.max(...newArr) + 1;
+  const nextId: number = database.length === 0 ? 1 : Math.max(...database.map(user => user.id)) + 1;
   const { name } = req.body;
   const user: User = { id: nextId, name: name };
   database.push(user);
-  res.status(200).send("new user added");
+  res.status(200).send(user);
 });
 
 export default router;
