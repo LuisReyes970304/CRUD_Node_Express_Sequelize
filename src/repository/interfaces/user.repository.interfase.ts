@@ -21,4 +21,13 @@ export interface UserRepoInterfase {
      * @returns void
      */
     deleteUser(id: number): boolean;
+
+    /**
+     * This method allows to update a new user, based on the id 
+     * to find the ight one and the name to modify the current one.
+     * @param {number} id 
+     * @param {string} name
+     * @returns {User} 
+     */
+    updateUser(id: number, name: string): User | undefined;
 }

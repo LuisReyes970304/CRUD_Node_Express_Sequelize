@@ -8,6 +8,7 @@ import getRouter from "./src/routes/get.routes.ts";
 import createRouter from "./src/routes/create_users.routes.ts";
 import deleteRouter from "./src/routes/delete_user.routes.ts";
 import findUserRouter from "./src/routes/find_user.routes.ts";
+import updateUserRouter from "./src/routes/update_user.routes.ts"
 
 const openapiSpecification = swaggerJsdoc(options);
 
@@ -25,6 +26,8 @@ app.post("/create_user", createRouter);
 app.delete("/delete", deleteRouter);
 
 app.post("/find_user", findUserRouter);
+
+app.patch("/update_user", updateUserRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on ${host}:${port}`);

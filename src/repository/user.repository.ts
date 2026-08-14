@@ -23,5 +23,14 @@ export class UserRepository implements UserRepoInterfase {
     }
     database.splice(index, 1);
     return true;
+    }
+
+    updateUser(id: number, name: string){
+        const currentUser = database.find((user) => user.id === id)
+        if(!currentUser){
+            return undefined
         }
+        currentUser.name = name
+        return currentUser
+    }
 }
