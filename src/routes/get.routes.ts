@@ -1,8 +1,10 @@
 import { Router } from "express";
-import { database} from "../models/user.model.ts";
 import { type Request, type Response } from "express";
+import { UserRepository } from "../repository/user.repository.ts";
 
 const router = Router();
+
+const userCrud = new UserRepository();
 
 /**
  * @openapi
@@ -17,7 +19,7 @@ const router = Router();
  *         description: database returned successfully.
  */
 router.get("/get_users", (_req: Request, res: Response) => {
-    res.send(database)
-})
+    res.status(200).send(userCrud.findAll());
+}); 
 
-export default router 
+export default router;

@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { type Request, type Response } from "express";
-import { type User, database } from "../models/user.model.ts";
+import { UserRepository } from "../repository/user.repository.ts";
 
 const router = Router();
+
+const userCrud = new UserRepository();
 
 /**
  * @openapi
@@ -29,10 +31,8 @@ const router = Router();
  *         description: New user created.
  */
 router.post("/create_user", (req: Request, res: Response) => {
-  const nextId: number = database.length === 0 ? 1 : Math.max(...database.map(user => user.id)) + 1;
   const { name } = req.body;
-  const user: User = { id: nextId, name: name };
-  database.push(user);
+    const user = userCrud.create(name)
   res.status(200).send(user);
 });
 

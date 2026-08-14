@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { database } from "../models/user.model.ts";
 import { type Request, type Response } from "express";
+import { type User, database } from "../models/user.model.ts";
 
 const router = Router();
 
 /**
  * @openapi
- * /delete:
- *   delete:
- *     summary: Delete User by ID!
- *     description: Delete a user using a body request.
+ * /find_user:
+ *   post:
+ *     summary: find User by ID!
+ *     description: Find a user using a body request.
  *     tags:
- *       - Delete
+ *       - Find
  *     requestBody:
  *       required: true
  *       content:
@@ -26,18 +26,14 @@ const router = Router();
  *                 example: 1
  *     responses:
  *       200:
- *         description: User deleted successfully.
+ *         description: User found successfully.
  *       404:
  *         description: User not found.
  */
-router.delete("/delete", (req: Request, res: Response) => {
+router.post("/find_user", (req: Request, res: Response) => {
   const { id } = req.body;
-  const index = database.findIndex((user) => user.id === id);
-  if (index === -1) {
-    return res.status(404).send("User not found");
-  }
-  database.splice(index, 1);
-  return res.status(200).send("User deleted successfully");
+  const user = database.find((user: User) => user.id === id);
+  res.status(200).send(user);
 });
 
 export default router;
