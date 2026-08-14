@@ -12,7 +12,7 @@ const userCrud = new UserRepository();
  *     summary: Delete User by ID!
  *     description: Delete a user using a body request.
  *     tags:
- *       - Delete
+ *       - Users
  *     requestBody:
  *       required: true
  *       content:

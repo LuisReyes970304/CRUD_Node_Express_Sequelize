@@ -13,7 +13,7 @@ const userCrud = new UserRepository();
  *     summary: Create new user!
  *     description: Create a new user using a body request.
  *     tags:
- *       - Create user
+ *       - Users
  *     requestBody:
  *       required: true
  *       content:
@@ -32,7 +32,7 @@ const userCrud = new UserRepository();
  */
 router.post("/create_user", (req: Request, res: Response) => {
   const { name } = req.body;
-    const user = userCrud.create(name)
+  const user = userCrud.create(name);
   res.status(200).send(user);
 });
 
