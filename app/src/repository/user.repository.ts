@@ -9,6 +9,7 @@ export class UserRepository implements UserRepoInterfase {
             ? 1
             : Math.max(...database.map((user) => user.id)) + 1;
         const user: User = { id: nextId, name: name };
+        database.push(user);
         return user;
     }
 

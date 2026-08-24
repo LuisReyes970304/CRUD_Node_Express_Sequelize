@@ -33,7 +33,7 @@ const userCrud = new UserRepository();
 router.post("/create_user", (req: Request, res: Response) => {
   const { name } = req.body;
   const user = userCrud.create(name);
-  res.status(200).send(user);
+  res.status(200).json(user);
 });
 
 export default router;

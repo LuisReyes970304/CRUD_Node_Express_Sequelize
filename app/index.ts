@@ -9,11 +9,10 @@ import createRouter from "./src/routes/create_users.routes.ts";
 import deleteRouter from "./src/routes/delete_user.routes.ts";
 import findUserRouter from "./src/routes/find_user.routes.ts";
 import updateUserRouter from "./src/routes/update_user.routes.ts"
-import { connectDB } from "./src/config/database.ts";
+import  connectDB  from "./src/config/database.ts";
 
 const openapiSpecification = swaggerJsdoc(options);
 
-connectDB();
 
 const app = express();
 

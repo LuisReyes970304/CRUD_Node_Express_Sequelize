@@ -42,5 +42,5 @@
     "skipLibCheck": true,
     "allowImportingTsExtensions": true
   }, 
-  "include": ["app/src/**/*.ts", "app/index.ts"]
+  "include": ["src/**/*.ts", "index.ts"]
 }
