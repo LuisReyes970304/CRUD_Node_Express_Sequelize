@@ -19,7 +19,7 @@ const userCrud = new UserRepository();
  *         description: database returned successfully.
  */
 router.get("/get_users", (_req: Request, res: Response) => {
-    res.status(200).send(userCrud.findAll());
+    res.status(200).json(userCrud.findAll());
 }); 
 
 export default router;
