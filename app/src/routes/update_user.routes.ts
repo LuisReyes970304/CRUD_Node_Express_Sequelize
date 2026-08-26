@@ -23,6 +23,7 @@ const userCrud = new UserRepository();
  *             required:
  *               - id
  *               - name
+ *               - password
  *             properties:
  *               id:
  *                 type: integer
@@ -30,6 +31,9 @@ const userCrud = new UserRepository();
  *               name:
  *                 type: string
  *                 example: Luis Reyes updated
+ *               password:
+ *                 type: string
+ *                 example: password_updated
  *     responses:
  *       200:
  *         description: User updated successfully.
@@ -37,8 +41,8 @@ const userCrud = new UserRepository();
  *         description: User not found.
  */
 router.patch("/update_user", (req: Request, res: Response) => {
-    const { id, name } = req.body;
-    const user = userCrud.updateUser(id, name);
+    const { id, name, password } = req.body;
+    const user = userCrud.updateUser(id, name, password);
     
     if (user === undefined) {
         return res.status(404).send("User not found"); 

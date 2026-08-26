@@ -1,7 +1,27 @@
 services:
   app:
-      build: ./app
-      container_name: ${SERVER_CONTAINER_NAME}
-      ports:  
-        - ${SERVER_PORT}:${SERVER_PORT}
+    build: ./app
+    container_name: ${SERVER_CONTAINER_NAME}
+    env_file:
+      - .env
+    ports:
+      - ${SERVER_PORT}:${SERVER_PORT}
+    depends_on:
+      - db
 
+  db:
+    image: postgres:16-alpine
+    container_name: ${SERVER_CONTAINER_NAME}-db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - ${POSTGRES_PORT}:5422
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

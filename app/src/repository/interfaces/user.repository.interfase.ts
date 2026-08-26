@@ -1,4 +1,4 @@
-import { type User } from "../../models/user.model.ts"
+import User from "../../models/user.model.ts"
 
 export interface UserRepoInterfase {
     
@@ -8,7 +8,7 @@ export interface UserRepoInterfase {
      * @param {string} name
      * @returns {User}  
      */
-    create(name: string): User;
+    create(name: string, password: string): User;
 
     /**
      * This method find all the users in the database.
@@ -29,5 +29,5 @@ export interface UserRepoInterfase {
      * @param {string} name
      * @returns {User} 
      */
-    updateUser(id: number, name: string): User | undefined;
+    updateUser(id: number, name: string, password: string): User | undefined;
 }

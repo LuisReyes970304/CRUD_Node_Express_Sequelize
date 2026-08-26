@@ -22,17 +22,21 @@ const userCrud = new UserRepository();
  *             type: object
  *             required:
  *               - name
+ *               - password
  *             properties:
  *               name:
  *                 type: string
  *                 example: Luis Reyes
+ *               password:
+ *                 type: string
+ *                 example: new_password_123
  *     responses:
  *       201:
  *         description: New user created.
  */
 router.post("/create_user", (req: Request, res: Response) => {
-  const { name } = req.body;
-  const user = userCrud.create(name);
+  const { name, password } = req.body;
+  const user = userCrud.create(name, password);
   res.status(200).json(user);
 });
 
