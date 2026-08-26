@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { type Request, type Response } from "express";
-import { type User, database } from "../models/user.model.ts";
+import { type User } from "../models/user.model.ts";
+import { database } from "../seeder/user.seeder.ts"
 
 const router = Router();
 

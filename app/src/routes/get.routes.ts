@@ -19,7 +19,13 @@ const userCrud = new UserRepository();
  *         description: database returned successfully.
  */
 router.get("/get_users", (_req: Request, res: Response) => {
-    res.status(200).json(userCrud.findAll());
+    try {
+        const users = await userService.findAllUsers();
+        res.status(200).json(users);
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Unexpected error fetching users";
+        res.status(500).json({ message });
+    }
 }); 
 
 export default router;

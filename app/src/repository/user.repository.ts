@@ -1,37 +1,33 @@
 import { type UserRepoInterfase } from "./interfaces/user.repository.interfase.ts";
-import { type User } from "../models/user.model.ts";
-import { database } from "../models/user.model.ts";
+import User from "../models/user.model.ts";
+import { database } from "../seeder/user.seeder.ts"
 
 export class UserRepository implements UserRepoInterfase {
-    create(name: string): User {
-        const nextId: number =
-        database.length === 0
-            ? 1
-            : Math.max(...database.map((user) => user.id)) + 1;
-        const user: User = { id: nextId, name: name };
-        database.push(user);
+    async create(name: string, password: string): Promise<User> {
+        const user = await User.create({name: name, password: password})
         return user;
     }
 
-    findAll() {
-        return database;
+    findAll(): Promise<User[]> {
+        return User.findAll();
     }
 
-    deleteUser(id: number) {
-    const index = database.findIndex((user) => user.id === id);
-    if (index === -1) {
-        return false;
-    }
-    database.splice(index, 1);
-    return true;
-    }
-
-    updateUser(id: number, name: string){
+    updateUser(id: number, name: string, password: string): Promise<User>{
         const currentUser = database.find((user) => user.id === id)
         if(!currentUser){
             return undefined
-        }
+            }
         currentUser.name = name
+        currentUser.password = password
         return currentUser
+    }
+
+    deleteUser(id: number): Promise<boolean> {
+    const index = database.findIndex((user) => user.id === id);
+        if (index === -1) {
+            return false;
+            }
+        database.splice(index, 1);
+        return true;
     }
 }
