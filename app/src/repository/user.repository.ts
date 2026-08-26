@@ -24,10 +24,10 @@ export class UserRepository implements UserRepoInterfase {
 
     deleteUser(id: number): Promise<boolean> {
     const index = database.findIndex((user) => user.id === id);
-    if (index === -1) {
-        return false;
-        }
-    database.splice(index, 1);
-    return true;
+        if (index === -1) {
+            return false;
+            }
+        database.splice(index, 1);
+        return true;
     }
 }
