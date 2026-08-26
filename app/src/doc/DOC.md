@@ -5,5 +5,5 @@
     image: postgres:16-alpine
     command: postgres -p 5422   
     ports:
-      - \${POSTGRES_PORT}:5422
+      - ${POSTGRES_PORT}:5422
 ```
