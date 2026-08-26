@@ -8,26 +8,26 @@ export class UserRepository implements UserRepoInterfase {
         return user;
     }
 
-    findAll() {
-        return database;
+    findAll(): Promise<User[]> {
+        return User.findAll();
     }
 
-    deleteUser(id: number) {
-    const index = database.findIndex((user) => user.id === id);
-    if (index === -1) {
-        return false;
-    }
-    database.splice(index, 1);
-    return true;
-    }
-
-    updateUser(id: number, name: string, password: string){
+    updateUser(id: number, name: string, password: string): Promise<User>{
         const currentUser = database.find((user) => user.id === id)
         if(!currentUser){
             return undefined
-        }
+            }
         currentUser.name = name
         currentUser.password = password
         return currentUser
+    }
+
+    deleteUser(id: number): Promise<boolean> {
+    const index = database.findIndex((user) => user.id === id);
+    if (index === -1) {
+        return false;
+        }
+    database.splice(index, 1);
+    return true;
     }
 }
