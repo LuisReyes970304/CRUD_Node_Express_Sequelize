@@ -34,10 +34,15 @@ const userCrud = new UserRepository();
  *       201:
  *         description: New user created.
  */
-router.post("/create_user", (req: Request, res: Response) => {
+router.post("/create_user", async (req: Request, res: Response) => {
   const { name, password } = req.body;
-  const user = userCrud.create(name, password);
-  res.status(200).json(user);
+  try {
+    const user = await userService.createUser(name, password);
+    res.status(201).json(user);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unexpected error creating user";
+    res.status(400).json({ message });
+  }
 });
 
 export default router;
