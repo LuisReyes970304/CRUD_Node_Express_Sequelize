@@ -39,9 +39,4 @@ User.init(
   }
 );
 
-export interface UserCreationDto {
-  name: string;
-  password: string;
-}
-
 export default User;

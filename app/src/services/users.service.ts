@@ -1,4 +1,5 @@
-import User, {type UserCreationDto} from "../models/user.model.ts";
+import User from "../models/user.model.ts";
+import type {UserCreationDto} from "../dto/user.dto.ts"
 import {UserRepository } from "../repository/user.repository.ts";
 
 const userRepository = new UserRepository()
@@ -11,7 +12,11 @@ export class UserService {
     return await userRepository.create(data);
   }
 
-  async findALL(): Promise<User[]> {
+  async findAll(): Promise<User[]> {
     return await userRepository.findAll();
+  }
+
+  async update(): Promise<void> {
+    return 
   }
 }

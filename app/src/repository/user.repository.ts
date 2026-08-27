@@ -1,6 +1,6 @@
 import { type UserRepoInterfase } from "./interfaces/user.repository.interfase.ts";
-import User, {type UserCreationDto} from "../models/user.model.ts";
-import { database } from "../seeder/user.seeder.ts"
+import User from "../models/user.model.ts";
+import type { UserCreationDto, UserUpdateDto } from "../dto/user.dto.ts";
 
 export class UserRepository implements UserRepoInterfase {
 
@@ -13,7 +13,7 @@ export class UserRepository implements UserRepoInterfase {
         return await User.findAll();
     }
 
-    async updateUser(id: number, name: string, password: string): Promise<User | undefined>{
+    async update(id: number, data: UserUpdateDto): Promise<User | undefined>{
         const user = await User.findOne({where: {id}});
         if(!user) {
             return undefined
@@ -21,12 +21,16 @@ export class UserRepository implements UserRepoInterfase {
         return user
     }
 
-    async deleteUser(id: number): Promise<boolean> {
+    async delete(id: number): Promise<boolean> {
     const user = await User.destroy({where: {id}})
         if (user === -1) {
             return false;
             }
-        database.splice(user, 1);
         return true;
+    }
+
+    async restore(id: number): Promise<void> {
+        const user = await User.findOne({where: {id}});
+        return 
     }
 }

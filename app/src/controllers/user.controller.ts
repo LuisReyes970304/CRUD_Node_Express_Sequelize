@@ -1,6 +1,6 @@
 import { UserService } from "../services/users.service.ts";
 import type { Response, Request } from "express";
-import type { UserCreationDto } from "../models/user.model.ts";
+import type { UserCreationDto } from "../dto/user.dto.ts";
 
 const userService = new UserService
 

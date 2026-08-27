@@ -1,4 +1,5 @@
-import User, {type UserCreationDto} from "../../models/user.model.ts";
+import User from "../../models/user.model.ts";
+import type { UserCreationDto, UserUpdateDto } from "../../dto/user.dto.ts"; 
 
 export interface UserRepoInterfase {
     
@@ -16,16 +17,25 @@ export interface UserRepoInterfase {
     /**
      * This method allows to update a new user, based on the id 
      * to find the ight one and the name to modify the current one.
+     * 
      * @param {number} id 
-     * @param {string} name
+     * @param {UserUpdateDto} data
      * @returns {User} 
      */
-    updateUser(id: number, name: string, password: string): Promise<User | undefined> ;
+    update(id: number, data: UserUpdateDto): Promise<User | undefined> ;
 
     /**
      * This method delete the users from the database.
+     * 
      * @param {number} id 
      * @returns void
      */
-    deleteUser(id: number): Promise<boolean>;
+    delete(id: number): Promise<boolean>;
+
+    /**
+     * This is the method to restore an user delited throw soft delete.
+     * 
+     * @param {number} id 
+     */
+    restore(id: number): Promise<void>;
 }
