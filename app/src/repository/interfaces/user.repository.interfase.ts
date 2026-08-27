@@ -21,7 +21,7 @@ export interface UserRepoInterfase {
      * @param {string} name
      * @returns {User} 
      */
-    updateUser(id: number, name: string, password: string): Promise<User> | undefined;
+    updateUser(id: number, name: string, password: string): Promise<User | undefined> ;
 
     /**
      * This method delete the users from the database.

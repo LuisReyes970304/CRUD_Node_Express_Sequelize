@@ -6,7 +6,7 @@ export const port: Number = parseInt(process.env.SERVER_PORT as string, 10);
 export const host: String = process.env.SERVER_URL as string; 
 
 const sequelize = new Sequelize(
-    process.env.POSTGRES_DATABASE as string,
+    process.env.POSTGRES_DB as string,
     process.env.POSTGRES_USER as string,
     process.env.POSTGRES_PASSWORD as string,
     {
