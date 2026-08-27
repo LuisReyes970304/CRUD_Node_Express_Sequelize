@@ -1,10 +1,8 @@
 import { Router } from "express";
-import { type Request, type Response } from "express";
-import { UserRepository } from "../repository/user.repository.ts";
+import { createUser } from "../controllers/user.controller.ts";
 
 const router = Router();
 
-const userCrud = new UserRepository();
 
 /**
  * @openapi
@@ -34,15 +32,6 @@ const userCrud = new UserRepository();
  *       201:
  *         description: New user created.
  */
-router.post("/create_user", async (req: Request, res: Response) => {
-  const { name, password } = req.body;
-  try {
-    const user = await userCrud.create(name, password);
-    res.status(201).json(user);
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "Unexpected error creating user";
-    res.status(400).json({ message });
-  }
-});
+router.post("/create_user", createUser);
 
 export default router;

@@ -7,3 +7,12 @@
     ports:
       - ${POSTGRES_PORT}:5422
 ```
+
+## This is how you can check the database information.
+
+```bash
+  docker exec -it crud-application-db psql -U LuisReyes979394 -d postgres
+  \dt
+  \d "Users"
+  SELECT * FROM "Users";
+```

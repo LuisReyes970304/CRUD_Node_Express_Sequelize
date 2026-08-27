@@ -1,14 +1,14 @@
-import User from "../models/user.model.ts";
+import User, {type UserCreationDto} from "../models/user.model.ts";
 import {UserRepository } from "../repository/user.repository.ts";
 
 const userRepository = new UserRepository()
 
 export class UserService {
-  async create(name: string, password: string): Promise<User> {
-    if(!name || !password) {
+  async create(data: UserCreationDto): Promise<User> {
+    if(!data) {
       throw new Error("name and password are required");
     }
-    return await userRepository.create(name, password);
+    return await userRepository.create(data);
   }
 
   async findALL(): Promise<User[]> {

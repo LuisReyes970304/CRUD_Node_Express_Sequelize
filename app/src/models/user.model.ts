@@ -33,9 +33,15 @@ User.init(
     },
   },
   {
-    sequelize,
+    sequelize: sequelize as any,
     modelName: "User",
+    paranoid: true,
   }
 );
+
+export interface UserCreationDto {
+  name: string;
+  password: string;
+}
 
 export default User;

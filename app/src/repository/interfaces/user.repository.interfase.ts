@@ -1,13 +1,12 @@
-import User from "../../models/user.model.ts"
+import User, {type UserCreationDto} from "../../models/user.model.ts";
 
 export interface UserRepoInterfase {
     
     /**
      * returns a new User object type.
-     * @param {string} name
-     * @returns {User}  
+     * @param {UserCreationDto} data - User data. 
      */
-    create(name: string, password: string): Promise<User>;
+    create(data: UserCreationDto): Promise<User>;
 
     /**
      * This method find all the users in the database.

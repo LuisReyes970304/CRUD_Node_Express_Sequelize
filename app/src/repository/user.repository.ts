@@ -1,11 +1,11 @@
 import { type UserRepoInterfase } from "./interfaces/user.repository.interfase.ts";
-import User from "../models/user.model.ts";
+import User, {type UserCreationDto} from "../models/user.model.ts";
 import { database } from "../seeder/user.seeder.ts"
 
 export class UserRepository implements UserRepoInterfase {
 
-    async create(name: string, password: string): Promise<User> {
-        const user = await User.create({name: name, password: password})
+    async create(data: UserCreationDto): Promise<User> {
+        const user = await User.create(data)
         return user;
     }
 
