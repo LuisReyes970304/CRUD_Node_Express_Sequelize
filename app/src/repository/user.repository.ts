@@ -18,7 +18,7 @@ export class UserRepository implements UserRepoInterfase {
         if(!user) {
             return undefined
         }
-        return user
+        return user.update(data);
     }
 
     async delete(id: number): Promise<boolean> {
@@ -30,7 +30,7 @@ export class UserRepository implements UserRepoInterfase {
     }
 
     async restore(id: number): Promise<void> {
-        const user = await User.findOne({where: {id}});
-        return 
+        const user = await User.restore({where: {id}});
+        return user
     }
 }
