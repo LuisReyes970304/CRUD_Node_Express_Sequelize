@@ -1,6 +1,7 @@
 import express from "express";
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
+import sequelize from "./src/config/database.ts";
 import { options } from "./src/doc/swagger.ts";
 import { host, port } from "./src/config/database.ts";
 
@@ -11,6 +12,9 @@ import findUserRouter from "./src/routes/find_user.routes.ts";
 import updateUserRouter from "./src/routes/update_user.routes.ts"
 
 const openapiSpecification = swaggerJsdoc(options);
+
+await sequelize.authenticate();
+await sequelize.sync();
 
 
 const app = express();

@@ -18,9 +18,9 @@ const userCrud = new UserRepository();
  *       200:
  *         description: database returned successfully.
  */
-router.get("/get_users", (_req: Request, res: Response) => {
+router.get("/get_users", async (_req: Request, res: Response) => {
     try {
-        const users = await userService.findAllUsers();
+        const users = await userCrud.findAll();
         res.status(200).json(users);
     } catch (error) {
         const message = error instanceof Error ? error.message : "Unexpected error fetching users";
