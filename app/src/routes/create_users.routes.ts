@@ -1,12 +1,11 @@
 import { Router } from "express";
-import { createUser } from "../controllers/user.controller.ts";
+import { userController } from "../controllers/user.controller.ts";
 
 const router = Router();
 
-
 /**
  * @openapi
- * /create_user:
+ * /user/create_user:
  *   post:
  *     summary: Create new user!
  *     description: Create a new user using a body request.
@@ -32,6 +31,20 @@ const router = Router();
  *       201:
  *         description: New user created.
  */
-router.post("/create_user", createUser);
+router.post("/user/create_user", userController.createUser);
+
+/**
+ * @openapi
+ * /get_users:
+ *   get:
+ *     summary: Get all users!
+ *     description: Get all users in the database in a json file
+ *     tags:
+ *       - Users
+ *     responses:
+ *       200:
+ *         description: database returned successfully.
+ */
+router.get("/user/get_users", userController.findAllUsers);
 
 export default router;

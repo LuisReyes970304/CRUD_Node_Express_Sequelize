@@ -5,26 +5,22 @@ import sequelize from "./src/config/database.ts";
 import { options } from "./src/doc/swagger.ts";
 import { host, port } from "./src/config/database.ts";
 
-import getRouter from "./src/routes/get.routes.ts";
-import createRouter from "./src/routes/create_users.routes.ts";
+import userRouter from "./src/routes/create_users.routes.ts";
 import deleteRouter from "./src/routes/delete_user.routes.ts";
 import findUserRouter from "./src/routes/find_user.routes.ts";
-import updateUserRouter from "./src/routes/update_user.routes.ts"
+import updateUserRouter from "./src/routes/update_user.routes.ts";
 
 const openapiSpecification = swaggerJsdoc(options);
 
 await sequelize.authenticate();
 await sequelize.sync();
 
-
 const app = express();
 
 app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use(express.json());
 
-app.get("/get_users", getRouter);
-
-app.post("/create_user", createRouter);
+app.use("/user", userRouter);
 
 app.delete("/delete", deleteRouter);
 
