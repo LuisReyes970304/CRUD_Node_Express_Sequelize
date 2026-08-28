@@ -5,10 +5,7 @@ import sequelize from "./src/config/database.ts";
 import { options } from "./src/doc/swagger.ts";
 import { host, port } from "./src/config/database.ts";
 
-import userRouter from "./src/routes/create_users.routes.ts";
-import deleteRouter from "./src/routes/delete_user.routes.ts";
-import findUserRouter from "./src/routes/find_user.routes.ts";
-import updateUserRouter from "./src/routes/update_user.routes.ts";
+import userRouter from "./src/routes/user.routes.ts";
 
 const openapiSpecification = swaggerJsdoc(options);
 
@@ -21,12 +18,6 @@ app.use("/docs", swaggerUi.serve, swaggerUi.setup(openapiSpecification));
 app.use(express.json());
 
 app.use("/user", userRouter);
-
-app.delete("/delete", deleteRouter);
-
-app.post("/find_user", findUserRouter);
-
-app.patch("/update_user", updateUserRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on ${host}:${port}`);

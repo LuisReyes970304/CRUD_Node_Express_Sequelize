@@ -6,7 +6,13 @@ class UserController {
      * 
      * @param userService - Inject de UserService dependency allowing a best testing in the future.
      */
-    constructor(private userService: UserService = new UserService()) {}
+    constructor(private userService: UserService = new UserService()) {
+        this.findAllUsers = this.findAllUsers.bind(this);
+        this.createUser = this.createUser.bind(this);
+        this.updateUser = this.updateUser.bind(this);
+        this.deleteUser = this.deleteUser.bind(this);
+        this.restoreUser = this.restoreUser.bind(this);
+    }
 
     /**
      * Method that create a new user and then return it, so is possible check it.
@@ -81,11 +87,14 @@ class UserController {
      * --- This is a helper that allows validate the id ---
      */ 
     private validateId(id: unknown, res: Response): number | null {
-        if (!id || typeof id !== "string") {
-            res.status(400).json({ error: "Invalid or missing user ID in route parameters" });
+        const parsedId = Number(id);
+        if (!Number.isInteger(parsedId) || parsedId <= 0) {
+            res.status(400).json({
+                error: "Invalid or missing user ID"
+            });
             return null;
         }
-        return parseInt(id, 10);
+        return parsedId;
     }
 
     private handleError(res: Response, error: unknown, defaultStatus: number, defaultMsg = "An unexpected error occurred") {

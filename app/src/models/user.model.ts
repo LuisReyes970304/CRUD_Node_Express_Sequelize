@@ -7,10 +7,7 @@ import {
   type CreationOptional,
 } from "sequelize";
 
-class User extends Model<
-  InferAttributes<User>,
-  InferCreationAttributes<User>
-> {
+class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
   declare id: CreationOptional<number>;
   declare name: string;
   declare password: string;
@@ -33,10 +30,10 @@ User.init(
     },
   },
   {
-    sequelize: sequelize as any,
+    sequelize: sequelize, // maybe is *as any*
     modelName: "User",
     paranoid: true,
-  }
+  },
 );
 
 export default User;
