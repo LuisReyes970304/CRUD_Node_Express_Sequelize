@@ -31,6 +31,7 @@ User.init(
   },
   {
     sequelize: sequelize, // maybe is *as any*
+    timestamps: true,
     modelName: "User",
     paranoid: true,
   },
