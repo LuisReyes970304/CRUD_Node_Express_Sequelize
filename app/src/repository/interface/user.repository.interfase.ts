@@ -1,7 +1,7 @@
 import User from "../../models/user.model.ts";
 import type { UserCreationDto, UserUpdateDto } from "../../dto/user.dto.ts"; 
 
-export interface UserRepoInterfase {
+export interface UserRepoInterface {
     
     /**
      * returns a new User object type.
@@ -15,6 +15,11 @@ export interface UserRepoInterfase {
     findAll(): Promise<User[]>;
 
     /**
+     * This method is going to allow to find an user based on its ID.
+     */
+    findOne(id: number, active: boolean): Promise<User | null>;
+
+    /**
      * This method allows to update a new user, based on the id 
      * to find the ight one and the name to modify the current one.
      * 
@@ -22,7 +27,7 @@ export interface UserRepoInterfase {
      * @param {UserUpdateDto} data
      * @returns {User} 
      */
-    update(id: number, data: UserUpdateDto): Promise<User | undefined> ;
+    update(id: number, data: UserUpdateDto): Promise<boolean> ;
 
     /**
      * This method delete the users from the database.
