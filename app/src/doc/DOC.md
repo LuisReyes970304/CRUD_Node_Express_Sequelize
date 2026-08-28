@@ -16,3 +16,7 @@
   \d "Users"
   SELECT * FROM "Users";
 ```
+### This command is for just running the seeder:
+ ```bash
+  docker compose exec app npm run seed
+ ```
