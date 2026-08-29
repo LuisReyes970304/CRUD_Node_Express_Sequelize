@@ -15,4 +15,4 @@ COPY . .
 EXPOSE 3015
 
 # Ejecutar aplicación en desarrollo
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "start"]

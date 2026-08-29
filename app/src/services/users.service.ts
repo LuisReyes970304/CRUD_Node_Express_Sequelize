@@ -1,14 +1,17 @@
 import User from "../models/user.model.ts";
 import type { UserCreationDto, UserUpdateDto } from "../dto/user.dto.ts";
 import { UserRepository } from "../repository/user.repository.ts";
+import type { UserServiceInterface } from "./interface/user.service.interface.ts";
+import {passwordManager} from "../utils/bcrypt.util.ts";
 
 const userRepository = new UserRepository();
 
-export class UserService {
+export class UserService implements UserServiceInterface {
   async create(data: UserCreationDto): Promise<User> {
     if (!data) {
       throw new Error("name and password are required");
     }
+    data.password = await passwordManager.passwordHasher(data.password);
     return await userRepository.create(data);
   }
 
@@ -46,3 +49,4 @@ export class UserService {
     return user;
   }
 }
+
