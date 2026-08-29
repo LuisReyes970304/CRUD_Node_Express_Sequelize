@@ -1,35 +1,17 @@
-import { faker } from "@faker-js/faker";
 import sequelize from "../config/database.ts";
 import User from "../models/user.model.ts";
 import type { UserCreationDto } from "../dto/user.dto.ts";
 
-const RANDOM_USERS_COUNT = 6;
 
 /**
  * Usuarios fijos, siempre presentes (útiles para probar login,
  * roles, admin panel, etc. con credenciales conocidas).
  */
 const fixedUsers: UserCreationDto[] = [
-    { name: "admin", password: "Admin123!" },
-    { name: "luis.reyes", password: "LuisDev2026!" },
-    { name: "qa.tester", password: "QaTest2026!" },
-    { name: "demo.user", password: "DemoUser2026!" },
-];
-
-/**
- * Genera usuarios aleatorios con faker, útiles para poblar la tabla
- * con datos más realistas (paginación, búsquedas, listados, etc.).
- */
-const generateRandomUsers = (count: number): UserCreationDto[] => {
-return Array.from({ length: count }, () => ({
-    name: faker.internet.username().toLowerCase(),
-    password: faker.internet.password({ length: 12 }),
-}));
-}
-
-export const seedUsers: UserCreationDto[] = [
-    ...fixedUsers,
-    ...generateRandomUsers(RANDOM_USERS_COUNT),
+    { name: "Admin", password: "Admin123!" },
+    { name: "Luis Reyes", password: "LuisDev2026!" },
+    { name: "QA tester", password: "QaTest2026!" },
+    { name: "Demo User", password: "DemoUser2026!" },
 ];
 
 /**
@@ -42,7 +24,7 @@ export async function runSeeder(): Promise<void> {
     await sequelize.authenticate();
     await sequelize.sync();
 
-    for (const seed of seedUsers) {
+    for (const seed of fixedUsers) {
         const [user, created] = await User.findOrCreate({
             where: { name: seed.name },
             defaults: {
