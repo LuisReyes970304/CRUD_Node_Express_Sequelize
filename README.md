@@ -1,6 +1,41 @@
-# practica_ts
+# CRUD Node Express Sequelize
 
-This is a practice that will be usefull for the assestment
+This is a Docker compose node.js environmental API Rest managed throw TypeScript as programming language.It is composed by Sequelize as ORM with postgres as database, and in this case Express as API Framework. This API is organized throw a layered monolithic architecture.
+
+This API is builded in two different parts:
+- User CRUD:
+```js
+  /**
+   * This is the CRUD incharged of handle the User creation, obtainment, uptading and deletion.
+   * @param {Security} bcrypt - It manages bcrypt to hash the user password.
+   * @param {FakeDB} seeder - And includes a seeder to check information without creating it before for testing. 
+   */
+  const userCRUD = {
+    bcrypt: "Security",
+    seeder: "fake db information",
+    createUser: 
+      {
+        id: "number", 
+        name: "name", 
+        password: "Hashed Password", 
+        role: "role"
+      },
+    obtainment: 
+      {
+        findAll: "GET all the users in the db, the feature is mostly for an ADMIN user"
+      },
+    updating: 
+      {
+        updateUser: "Update the user name, or user password using PATCH"
+      },
+    deletion: 
+      {
+        deleteUser: "Delete the user using soft_delete",
+        restoreUser: "Restore the user deleted throw soft_delete."
+      }
+  }
+```
+
 
 ---
 ---
@@ -74,8 +109,8 @@ Is going to be used the next serie of framework in the project:
 It is quite important to use the right version of images. in this case the more stable version for postgres is 17-alpines.
 
 ```yaml
-db:
-  image: postgres:17-alpine
+  db:
+    image: postgres:17-alpine
 ```
 
 On the other hand, in order to build the nodejs image we are going to use node:24-alpine in the Dockerfile.
