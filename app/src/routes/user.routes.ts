@@ -25,12 +25,12 @@ const router = Router();
  *               name:
  *                 type: string
  *                 example: Luis Reyes
- *               password:
- *                 type: string
- *                 example: new_password_123
  *               email: 
  *                 type: string
  *                 example: luisreyes@gmail.com
+ *               password:
+ *                 type: string
+ *                 example: new_password_123
  *     responses:
  *       201:
  *         description: New user created.

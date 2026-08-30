@@ -12,6 +12,7 @@ export class UserService implements UserServiceInterface {
       throw new Error("name and password are required");
     }
     data.password = await passwordManager.passwordHasher(data.password);
+    data.role = "user";
     return await userRepository.create(data);
   }
 

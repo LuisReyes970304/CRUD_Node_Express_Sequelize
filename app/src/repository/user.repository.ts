@@ -1,4 +1,4 @@
-import { type UserRepoInterface } from "./interface/user.repository.interfase.ts";
+import { type UserRepoInterface } from "./interface/user.repository.interface.ts";
 import User from "../models/user.model.ts";
 import type { UserCreationDto, UserUpdateDto } from "../dto/user.dto.ts";
 

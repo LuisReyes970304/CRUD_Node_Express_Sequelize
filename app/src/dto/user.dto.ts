@@ -1,8 +1,7 @@
 export interface UserCreationDto {
     name: string;
     email: string;
-    password: string;
-    role: "user";
+    password: string;    role: string;
 
 }
 
