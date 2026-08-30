@@ -5,12 +5,15 @@ import {
   type InferAttributes,
   type InferCreationAttributes,
   type CreationOptional,
+  type Optional,
 } from "sequelize";
 
-class User extends Model<InferAttributes<User>, InferCreationAttributes<User>> {
+class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>{
   declare id: CreationOptional<number>;
   declare name: string;
+  declare email: string;
   declare password: string;
+  declare role: string;
 }
 
 User.init(
@@ -24,10 +27,18 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    role: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   },
   {
     sequelize: sequelize, // maybe is *as any*

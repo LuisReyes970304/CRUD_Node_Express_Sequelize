@@ -2,13 +2,13 @@
 
 This is a Docker compose node.js environmental API Rest managed throw TypeScript as programming language.It is composed by Sequelize as ORM with postgres as database, and in this case Express as API Framework. This API is organized throw a layered monolithic architecture.
 
-This API is builded in two different parts:
+## This API is builded in two different parts:
 - User CRUD:
 ```js
   /**
    * This is the CRUD incharged of handle the User creation, obtainment, uptading and deletion.
    * @param {Security} bcrypt - It manages bcrypt to hash the user password.
-   * @param {FakeDB} seeder - And includes a seeder to check information without creating it before for testing. 
+   * @param {FakeDB} seeder - A seeder to check information without creating it before for testing. 
    */
   const userCRUD = {
     bcrypt: "Security",
@@ -22,7 +22,8 @@ This API is builded in two different parts:
       },
     obtainment: 
       {
-        findAll: "GET all the users in the db, the feature is mostly for an ADMIN user"
+        findAll: "GET all the users in the db, the feature is mostly for an ADMIN user",
+        findOne: "Post User by ID"
       },
     updating: 
       {
@@ -36,13 +37,11 @@ This API is builded in two different parts:
   }
 ```
 
-
 ---
 ---
 
-## Language and language configuration
 
-This little CRUD is going to be design using TypeScript as language, with the next configuration.
+## TS configuration
 
 ```json
   {
@@ -68,11 +67,14 @@ This little CRUD is going to be design using TypeScript as language, with the ne
     "include": ["src/**/*.ts", "index.ts"]
   }
 ```
-### frameworks
-Is going to be used the next serie of framework in the project:
+
+---
+---
+
 
 #### backend: Nodejs con ssu package.json
-- ```json
+
+```json
   {
     "main": "index.js",
     "scripts": {
@@ -105,7 +107,8 @@ Is going to be used the next serie of framework in the project:
 
 ## API Configuration
 
-<h3>Docker Compose Configurations</h3>
+- Docker Compose Configurations.
+
 It is quite important to use the right version of images. in this case the more stable version for postgres is 17-alpines.
 
 ```yaml

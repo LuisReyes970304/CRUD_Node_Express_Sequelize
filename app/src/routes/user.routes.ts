@@ -19,6 +19,7 @@ const router = Router();
  *             type: object
  *             required:
  *               - name
+ *               - email
  *               - password
  *             properties:
  *               name:
@@ -27,6 +28,9 @@ const router = Router();
  *               password:
  *                 type: string
  *                 example: new_password_123
+ *               email: 
+ *                 type: string
+ *                 example: luisreyes@gmail.com
  *     responses:
  *       201:
  *         description: New user created.
