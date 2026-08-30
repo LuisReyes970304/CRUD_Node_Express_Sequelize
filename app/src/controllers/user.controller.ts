@@ -1,5 +1,6 @@
 import { UserService } from "../services/users.service.ts";
 import type { Response, Request } from "express";
+import User from "../models/user.model.ts";
 
 class UserController {
     /**
