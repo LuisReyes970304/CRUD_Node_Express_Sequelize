@@ -5,7 +5,6 @@ import {
   type InferAttributes,
   type InferCreationAttributes,
   type CreationOptional,
-  type Optional,
 } from "sequelize";
 
 class User extends Model<InferAttributes<User>, InferCreationAttributes<User>>{

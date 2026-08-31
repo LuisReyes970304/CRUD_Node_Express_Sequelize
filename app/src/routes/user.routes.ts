@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { userController } from "../controllers/user.controller.ts";
+import { authorizeRoles, verifyToken } from "../middleware/auth.middleware.ts";
 
 const router = Router();
 
@@ -43,13 +44,15 @@ router.post("/create_user", userController.createUser);
  *   get:
  *     summary: Get all users!
  *     description: Get all users in the database in a json file
+ *     security:
+ *       - bearerAuth: []
  *     tags:
  *       - Users
  *     responses:
  *       200:
  *         description: database returned successfully.
  */
-router.get("/get_users", userController.findAllUsers);
+router.get("/get_users", verifyToken, authorizeRoles("admin"), userController.findAllUsers);
 
 /**
  * @openapi
@@ -96,6 +99,8 @@ router.patch("/update_user/:id", userController.updateUser);
  *   delete:
  *     summary: Delete user by ID
  *     description: Soft-delete an existing user using their ID.
+ *     security:
+ *       - bearerAuth: []
  *     tags:
  *       - Users
  *     parameters:
@@ -114,7 +119,7 @@ router.patch("/update_user/:id", userController.updateUser);
  *       404:
  *         description: User not found.
  */
-router.delete("/delete/:id", userController.deleteUser);
+router.delete("/delete/:id", verifyToken, authorizeRoles("admin"),userController.deleteUser);
 
 /**
  * @openapi
@@ -122,6 +127,8 @@ router.delete("/delete/:id", userController.deleteUser);
  *   patch:
  *     summary: Restore user by ID
  *     description: Restore a soft-deleted user using their ID.
+ *     security:
+ *       - bearerAuth: []
  *     tags:
  *       - Users
  *     parameters:
@@ -140,6 +147,6 @@ router.delete("/delete/:id", userController.deleteUser);
  *       404:
  *         description: User not found.
  */
-router.patch("/restore/:id", userController.restoreUser);
+router.patch("/restore/:id", verifyToken, authorizeRoles("admin"),userController.restoreUser);
 
 export default router;
