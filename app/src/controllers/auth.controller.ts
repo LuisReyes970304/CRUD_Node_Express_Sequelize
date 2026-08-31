@@ -27,7 +27,7 @@ class AuthController {
      */
     private handleError(res: Response, error: unknown, defaultStatus: number, defaultMsg = "An unexpected error occurred") {
         const message = error instanceof Error ? error.message : defaultMsg;
-        const status = message === "Invalid credentials" ? 401 : defaultStatus;
+        const status = message === "Invalid email or password" ? 401 : defaultStatus;
         res.status(status).json({ error: message });
     }
 }

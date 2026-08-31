@@ -9,6 +9,15 @@ export const options = {
         title: "NODE Sequelise Express API",
         version: '1.0.0',
         },
+        components: {
+            securitySchemes: {
+                bearerAuth: {
+                    type: "http",
+                    scheme: "bearer",
+                    bearerFormat: "JWT",
+                },
+            },
+        },
     },
     apis: ['./*.ts', './**/*.ts'], 
 };
