@@ -1,6 +1,7 @@
 import sequelize from "../config/database.ts";
 import User from "../models/user.model.ts";
 import type { UserCreationDto } from "../dto/user.dto.ts";
+import { passwordManager } from "../utils/bcrypt.util.ts";
 
 
 /**
@@ -30,7 +31,7 @@ export async function runSeeder(): Promise<void> {
             defaults: {
                 name: seed.name,
                 email: seed.email,
-                password: seed.password,
+                password: await passwordManager.passwordHasher(seed.password),
                 role: seed.role
             },
         });

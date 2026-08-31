@@ -9,9 +9,11 @@ const authRepo = new AuthRepository();
 export class AuthService implements AuthServiceInterface {
 
     /**
+     * It validate the credentials (email + password) and if they are right.
+     * Returns a JWT with the public data.
      * 
      * @param {LoginDto} data - Login session with email and password.
-     * @returns {Promise<AuthResponseDto>}
+     * @returns {Promise<AuthResponseDto>} - Token + public user data.
      */
     async login(data: LoginDto): Promise <AuthResponseDto> {
         if(!data?.email || !data.password) {
@@ -22,7 +24,7 @@ export class AuthService implements AuthServiceInterface {
             throw new Error("Invalid email or password");
         }
         const validPassword = await passwordManager.passwordVerfier(
-            data.email,
+            data.password,
             user.password
         );
         if(!validPassword) {
@@ -31,7 +33,7 @@ export class AuthService implements AuthServiceInterface {
         const token = jwtManager.generateToken({
             id: user.id,
             email: user.email,
-            role: user.password
+            role: user.role
         });
         return{
             token,

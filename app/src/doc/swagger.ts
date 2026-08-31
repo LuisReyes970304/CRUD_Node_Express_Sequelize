@@ -6,7 +6,7 @@ export const options = {
     definition: {
         openapi: "3.0.0",
         info: {
-        title: "CRUD Login",
+        title: "NODE Sequelise Express API",
         version: '1.0.0',
         },
     },
