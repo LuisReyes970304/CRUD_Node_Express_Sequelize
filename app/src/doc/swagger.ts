@@ -1,4 +1,4 @@
-
+ 
 /**
  * OpenAPI specification for the hybrid cryptography demo API.
  */
@@ -9,6 +9,12 @@ export const options = {
         title: "NODE Sequelise Express API",
         version: '1.0.0',
         },
+        servers: [
+            {
+                url: "/",
+                description: "Same origin as the running server",
+            },
+        ],
         components: {
             securitySchemes: {
                 bearerAuth: {

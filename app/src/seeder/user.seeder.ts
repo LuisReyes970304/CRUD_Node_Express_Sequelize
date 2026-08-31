@@ -9,7 +9,7 @@ import { passwordManager } from "../utils/bcrypt.util.ts";
  * roles, admin panel, etc. con credenciales conocidas).
  */
 const fixedUsers: UserCreationDto[] = [
-    { name: "Admin", email: "adming@getMaxListeners.com", password: "Admin123!", role:"admin"},
+    { name: "Admin", email: "admin@admin.com", password: "Admin123!", role:"admin"},
     { name: "Luis Reyes", email: "luisreyescaro@gmail.com", password: "LuisDev2026!", role: "develop"},
     { name: "QA tester", email: "qatester@gmail.com" ,password: "QaTest2026!", role: "qa" },
     { name: "Demo User", email: "user@gmail.com",password: "DemoUser2026!", role: "user" },
